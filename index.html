@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Website</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        nav {
+            background: #2c3e50;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            min-height: 60vh;
+        }
+
+        .blog-list {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .blog-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card .date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-content h1, .markdown-content h2 {
+            color: #2c3e50;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .markdown-content h1 {
+            font-size: 2.5rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .markdown-content h2 {
+            font-size: 2rem;
+        }
+
+        .markdown-content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #34495e;
+        }
+
+        .markdown-content p {
+            margin-bottom: 1rem;
+        }
+
+        .markdown-content code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .markdown-content pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .markdown-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" data-page="home">Home</a></li>
+            <li><a href="#blog" data-page="blog">Blog</a></li>
+            <li><a href="#about" data-page="about">About</a></li>
+            <li><a href="#faq" data-page="faq">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <div id="app"></div>
+
+    <footer>
+        <p>&copy; 2025 My Simple Website. Built with simplicity in mind.</p>
+    </footer>
+
+    <script>
+        // Blog post metadata (you can also load this from a JSON file)
+        const blogPosts = [
+            {
+                id: 'first-post',
+                title: 'My First Blog Post',
+                date: '2025-01-15',
+                excerpt: 'Welcome to my blog! This is where I share my thoughts.',
+                file: 'content/blog/first-post.md'
+            },
+            {
+                id: 'markdown-guide',
+                title: 'Working with Markdown',
+                date: '2025-01-20',
+                excerpt: 'A quick guide to using Markdown for your content.',
+                file: 'content/blog/markdown-guide.md'
+            }
+        ];
+
+        // Cache for loaded content
+        const contentCache = {};
+
+        // Load content from file
+        async function loadContent(filepath) {
+            if (contentCache[filepath]) {
+                return contentCache[filepath];
+            }
+
+            try {
+                const response = await fetch(filepath);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${filepath}`);
+                }
+                const content = await response.text();
+                contentCache[filepath] = content;
+                return content;
+            } catch (error) {
+                console.error('Error loading content:', error);
+                return `# Error\n\nFailed to load content from ${filepath}`;
+            }
+        }
+
+        // Router
+        async function navigate(page, postId = null) {
+            const app = document.getElementById('app');
+            
+            if (page === 'home') {
+                app.innerHTML = `
+                    <div class="hero">
+                        <h1>Welcome to My Website</h1>
+                        <p>A simple, elegant solution for your web presence</p>
+                    </div>
+                    <div class="container content">
+                        <h2>Getting Started</h2>
+                        <p>This is a simple website built with vanilla HTML, CSS, and JavaScript. No complicated frameworks needed!</p>
+                        <p>Navigate using the menu above to explore the blog, learn about us, or check out the FAQ.</p>
+                    </div>
+                `;
+            } else if (page === 'blog' && !postId) {
+                showBlogList();
+            } else if (page === 'blog' && postId) {
+                await showBlogPost(postId);
+            } else {
+                // Load markdown files for About and FAQ pages
+                const filepath = `content/${page}.md`;
+                const markdown = await loadContent(filepath);
+                app.innerHTML = `
+                    <div class="container content markdown-content">
+                        ${marked.parse(markdown)}
+                    </div>
+                `;
+            }
+        }
+
+        function showBlogList() {
+            const app = document.getElementById('app');
+            const postsHtml = blogPosts.map(post => `
+                <div class="blog-card" onclick="navigate('blog', '${post.id}')">
+                    <h3>${post.title}</h3>
+                    <div class="date">${post.date}</div>
+                    <p>${post.excerpt}</p>
+                </div>
+            `).join('');
+            
+            app.innerHTML = `
+                <div class="container content">
+                    <h1>Blog</h1>
+                    <div class="blog-list">
+                        ${postsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        async function showBlogPost(postId) {
+            const post = blogPosts.find(p => p.id === postId);
+            if (!post) {
+                navigate('blog');
+                return;
+            }
+            
+            const app = document.getElementById('app');
+            
+            // Load the blog post content from file
+            const markdown = await loadContent(post.file);
+            
+            app.innerHTML = `
+                <div class="container content">
+                    <a href="#blog" class="back-link" onclick="navigate('blog'); return false;">← Back to Blog</a>
+                    <div class="markdown-content">
+                        ${marked.parse(markdown)}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Event listeners
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = e.target.dataset.page;
+                navigate(page);
+            });
+        });
+
+        // Handle initial load
+        const hash = window.location.hash.slice(1) || 'home';
+        navigate(hash);
+    </script>
+</body>
+</html>
