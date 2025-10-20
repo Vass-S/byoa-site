@@ -27,12 +27,29 @@
             position: sticky;
             top: 0;
             z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .top-banner a {
             color: white;
             text-decoration: underline;
             margin-left: 0.5rem;
+        }
+
+        .banner-close {
+            position: absolute;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            display: none;
+            line-height: 1;
         }
 
         nav {
@@ -65,6 +82,9 @@
             font-weight: 500;
             font-size: 1.05rem;
             transition: color 0.3s;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
         nav a:hover {
@@ -76,6 +96,79 @@
             font-weight: 700;
             color: #5FD068;
             letter-spacing: 0.05em;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            min-width: 44px;
+            min-height: 44px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            z-index: 150;
+            padding: 2rem;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            font-size: 1.3rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            text-decoration: none;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
         .container {
@@ -128,7 +221,7 @@
         }
 
         .hero h1 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             margin-bottom: 1.2rem;
             color: white;
             line-height: 1.4;
@@ -150,6 +243,8 @@
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            min-height: 44px;
+            min-width: 44px;
         }
 
         .hero-btn:hover {
@@ -158,13 +253,17 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
 
+        .hero-btn:active {
+            transform: translateY(0);
+        }
+
         .content {
             min-height: 60vh;
             padding: 3rem 0;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             margin-bottom: 1rem;
             color: #333;
             text-align: center;
@@ -173,7 +272,7 @@
         .section-subtitle {
             text-align: center;
             color: #666;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             margin-bottom: 3rem;
             max-width: 700px;
             margin-left: auto;
@@ -192,13 +291,13 @@
         }
 
         .markdown-content h1 {
-            font-size: 2.75rem;
+            font-size: clamp(2rem, 5vw, 2.75rem);
             border-bottom: 3px solid #5FD068;
             padding-bottom: 0.75rem;
         }
 
         .markdown-content h2 {
-            font-size: 2.25rem;
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
             color: #2832C2;
         }
 
@@ -206,13 +305,13 @@
             margin-top: 1.75rem;
             margin-bottom: 0.875rem;
             color: #444;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
         }
 
         .markdown-content p {
             margin-bottom: 1.25rem;
             color: #555;
-            font-size: 1.05rem;
+            font-size: clamp(1rem, 2vw, 1.05rem);
             line-height: 1.8;
         }
 
@@ -248,6 +347,7 @@
 
         footer p {
             opacity: 0.9;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .middle-section {
@@ -264,7 +364,7 @@
             color: #e74c3c;
             margin-top: 0;
             margin-bottom: 2rem;
-            font-size: 2.8rem;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
             text-align: center;
             font-weight: 700;
             line-height: 1.3;
@@ -273,7 +373,7 @@
         .middle-content p {
             margin-bottom: 2rem;
             color: #444;
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
             line-height: 1.7;
             text-align: center;
             font-weight: 500;
@@ -281,14 +381,14 @@
 
         .middle-content p:first-of-type {
             color: #2832C2;
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 3.5vw, 1.4rem);
             font-weight: 600;
         }
 
         .middle-content p:last-of-type {
             margin-bottom: 3rem;
             color: #555;
-            font-size: 1.25rem;
+            font-size: clamp(1.1rem, 3vw, 1.25rem);
         }
 
         .middle-cta-container {
@@ -306,7 +406,7 @@
         .email-form-inner {
             display: flex;
             gap: 1rem;
-            align-items: center;
+            align-items: stretch;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -318,6 +418,7 @@
             border: none;
             border-radius: 4px;
             font-size: 1rem;
+            min-height: 50px;
         }
 
         .email-submit {
@@ -330,11 +431,16 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            min-height: 50px;
         }
 
         .email-submit:hover {
             background: white;
             color: #B24C5C;
+        }
+
+        .email-submit:active {
+            transform: scale(0.98);
         }
 
         .countdown-section {
@@ -343,7 +449,7 @@
         }
 
         .countdown-title {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-bottom: 1.5rem;
             opacity: 0.9;
         }
@@ -360,20 +466,20 @@
         }
 
         .countdown-number {
-            font-size: 3rem;
+            font-size: clamp(2rem, 6vw, 3rem);
             font-weight: 700;
             line-height: 1;
             margin-bottom: 0.5rem;
         }
 
         .countdown-label {
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             opacity: 0.8;
             text-transform: capitalize;
         }
 
         .countdown-separator {
-            font-size: 3rem;
+            font-size: clamp(2rem, 6vw, 3rem);
             font-weight: 300;
             opacity: 0.5;
         }
@@ -390,7 +496,7 @@
 
         .how-it-works-section .markdown-content h2 {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             color: #333;
             margin-top: 0;
             margin-bottom: 3rem;
@@ -398,7 +504,7 @@
         }
 
         .how-it-works-section .markdown-content h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             color: #2832C2;
             margin-top: 0;
             margin-bottom: 1rem;
@@ -409,7 +515,7 @@
         .how-it-works-section .markdown-content p {
             color: #666;
             line-height: 1.7;
-            font-size: 1.05rem;
+            font-size: clamp(1rem, 2vw, 1.05rem);
             text-align: left;
             margin-bottom: 2.5rem;
         }
@@ -432,7 +538,7 @@
 
         .age-tab {
             color: #fff;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
             text-decoration: none;
             padding: 1.8rem 1rem;
@@ -443,6 +549,10 @@
             border: none;
             position: relative;
             opacity: 0.7;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .age-tab::after {
@@ -500,9 +610,14 @@
             max-width: 1200px;
         }
 
+        /* Mobile Optimizations */
         @media (max-width: 968px) {
             .age-tabs {
                 grid-template-columns: 1fr;
+            }
+            
+            .age-tab {
+                padding: 1.2rem 1rem;
             }
             
             .age-tab::after {
@@ -516,38 +631,169 @@
             .age-tab:hover {
                 transform: translateY(0);
             }
+
+            .age-tab.active {
+                transform: scale(1);
+            }
+
+            .middle-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .how-it-works-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .age-groups-section {
+                padding: 3rem 1.5rem;
+            }
         }
 
         @media (max-width: 768px) {
+            .banner-close {
+                display: block;
+            }
+
+            .top-banner {
+                font-size: 0.85rem;
+                padding: 0.6rem 3rem 0.6rem 1rem;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+                top: 2rem;
+            }
+
+            .nav-left a:not(:first-child),
+            .nav-right a {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
             .hero {
-                padding: 0.5rem 1rem 1.5rem;
+                padding: 1rem;
             }
             
             .hero-video-container {
-                width: 95%;
-                max-height: 60vh;
+                width: 100%;
+                border-radius: 12px;
             }
             
             .hero-content {
-                padding: 1.5rem 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 1.3rem;
-                margin-bottom: 0.8rem;
+                padding: 2rem 1rem;
             }
             
             .hero-btn {
-                padding: 0.8rem 1.8rem;
-                font-size: 0.9rem;
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .email-form {
+                padding: 1.5rem;
+            }
+
+            .email-form-inner {
+                flex-direction: column;
+            }
+
+            .email-input,
+            .email-submit {
+                width: 100%;
+                min-width: 100%;
+            }
+
+            .countdown-timer {
+                gap: 0.8rem;
+            }
+
+            .countdown-separator {
+                display: none;
+            }
+
+            .countdown-item {
+                flex: 1;
+                min-width: 70px;
+            }
+
+            .middle-section {
+                padding: 2.5rem 1rem;
+            }
+
+            .middle-content h2 {
+                margin-bottom: 1.5rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+                margin-top: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-banner {
+                font-size: 0.8rem;
+            }
+
+            .hero-content {
+                padding: 1.5rem 0.75rem;
+            }
+
+            .countdown-timer {
+                gap: 0.5rem;
+            }
+
+            .countdown-item {
+                min-width: 60px;
+            }
+
+            .email-form {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            nav a,
+            .hero-btn,
+            .email-submit,
+            .age-tab {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .age-tab:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .age-tab:active {
+                opacity: 0.8;
+            }
+
+            .hero-btn:hover {
+                transform: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="top-banner">
+    <div class="top-banner" id="topBanner">
         Get started today with our special launch offer
         <a href="#signup" onclick="goToSignup(); return false;">Learn More</a>
+        <button class="banner-close" onclick="closeBanner()" aria-label="Close banner">×</button>
     </div>
     
     <nav>
@@ -560,8 +806,20 @@
         </div>
         <div class="nav-right">
             <a href="#faq" onclick="navigate('faq'); return false;">FAQ</a>
+            <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" onclick="navigate('home'); closeMenu(); return false;">Home</a>
+        <a href="#playkits" onclick="navigate('playkits'); closeMenu(); return false;">The Play Kits</a>
+        <a href="#about" onclick="navigate('about'); closeMenu(); return false;">About</a>
+        <a href="#faq" onclick="navigate('faq'); closeMenu(); return false;">FAQ</a>
+    </div>
 
     <div id="app"></div>
 
@@ -570,10 +828,32 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            menu.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        // Close banner
+        function closeBanner() {
+            const banner = document.getElementById('topBanner');
+            banner.style.display = 'none';
+            // Adjust nav position
+            document.querySelector('nav').style.top = '0';
+        }
+
         // Load markdown content from .md files with cache busting
         async function loadMarkdownContent(filename) {
             try {
-                // Add timestamp to prevent caching
                 const timestamp = new Date().getTime();
                 const response = await fetch(`content/${filename}.md?t=${timestamp}`);
                 if (!response.ok) {
@@ -593,6 +873,7 @@
 
         // Scroll to signup section
         function goToSignup() {
+            closeMenu();
             const signupSection = document.querySelector('.middle-section');
             if (signupSection) {
                 signupSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -646,21 +927,19 @@
 
         // Show specific age group
         function showAgeGroup(ageGroup) {
-            // Remove active class from all tabs and content
             document.querySelectorAll('.age-tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.age-content').forEach(content => content.classList.remove('active'));
             
-            // Add active class to selected tab and content
             event.target.classList.add('active');
             document.getElementById('age-' + ageGroup).classList.add('active');
         }
 
         // Router
         async function navigate(page) {
+            closeMenu();
             const app = document.getElementById('app');
             
             if (page === 'home') {
-                // Load middle section content from markdown
                 const middleSectionContent = await loadMarkdownContent('home-middle');
                 
                 app.innerHTML = `
@@ -681,7 +960,7 @@
                         <div class="middle-content">
                             ${middleSectionContent}
                             <div class="middle-cta-container">
-                                <h2 style="color: #2832C2; font-size: 1.8rem; margin-bottom: 1.5rem; font-weight: 600;">Join our early bird waitlist and get 40% off — limited time only!</h2>
+                                <h2 style="color: #2832C2; font-size: clamp(1.3rem, 4vw, 1.8rem); margin-bottom: 1.5rem; font-weight: 600;">Join our early bird waitlist and get 40% off — limited time only!</h2>
                                 <div class="email-form" style="background: rgba(40, 50, 194, 0.1); border: 2px solid #2832C2;">
                                     <div class="email-form-inner">
                                         <input type="email" class="email-input" placeholder="Enter Your Email Address">
@@ -718,10 +997,8 @@
                 `;
                 startCountdown();
             } else if (page === 'playkits') {
-                // Load how it works content
                 const howItWorksContent = await loadMarkdownContent('how-it-works');
                 
-                // Load age group content
                 const age0_12Content = await loadMarkdownContent('playkits-0-12months');
                 const age1YearContent = await loadMarkdownContent('playkits-1year');
                 const age2YearContent = await loadMarkdownContent('playkits-2year');
@@ -729,14 +1006,12 @@
                 const age4YearContent = await loadMarkdownContent('playkits-4year');
                 
                 app.innerHTML = `
-                    <!-- How It Works Section -->
                     <div class="how-it-works-section">
                         <div class="container markdown-content">
                             ${howItWorksContent}
                         </div>
                     </div>
                     
-                    <!-- Age Groups Section -->
                     <div class="age-groups-section">
                         <div class="container">
                             <h2 class="section-title">Explore Play Kits by Age</h2>
@@ -750,27 +1025,22 @@
                                 <a class="age-tab" onclick="showAgeGroup('4year'); return false;">4 Year</a>
                             </div>
                             
-                            <!-- 0-12 Months Content -->
                             <div id="age-0-12months" class="age-content active">
                                 <div class="markdown-content">${age0_12Content}</div>
                             </div>
                             
-                            <!-- 1 Year Content -->
                             <div id="age-1year" class="age-content">
                                 <div class="markdown-content">${age1YearContent}</div>
                             </div>
                             
-                            <!-- 2 Year Content -->
                             <div id="age-2year" class="age-content">
                                 <div class="markdown-content">${age2YearContent}</div>
                             </div>
                             
-                            <!-- 3 Year Content -->
                             <div id="age-3year" class="age-content">
                                 <div class="markdown-content">${age3YearContent}</div>
                             </div>
                             
-                            <!-- 4 Year Content -->
                             <div id="age-4year" class="age-content">
                                 <div class="markdown-content">${age4YearContent}</div>
                             </div>
