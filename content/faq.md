@@ -1,25 +1,13 @@
 # Frequently Asked Questions
 
-## What age ranges do you serve?
+## How do subscriptions work?
+You'll receive one Play Kit per month delivered right to your door. You can pause or cancel your subscription at any time.
 
-Our products are designed for children from newborn through age 4, with specific products tailored to each developmental stage.
+## Can I choose which activities I receive?
+Each kit is expertly curated for your child's age stage. While you can't customize individual kits, we ensure every activity is developmentally appropriate and engaging.
 
-## Are your products safe?
+## What if my child is between age ranges?
+We recommend choosing the kit that matches your child's current developmental stage. If you're unsure, feel free to contact us for personalized guidance.
 
-Absolutely! All products meet or exceed safety standards and are made with non-toxic, sustainably sourced materials.
-
-## How does shipping work?
-
-We offer free shipping on orders over $50. Most orders arrive within 5-7 business days.
-
-## Can I return a product?
-
-Yes! We offer a 30-day money-back guarantee. If you're not completely satisfied, we'll refund your purchase.
-
-## Do you offer subscriptions?
-
-Yes! Our subscription service delivers age-appropriate products automatically as your child grows.
-
-## How do I contact support?
-
-You can reach our customer support team at support@example.com or through the contact form on our website.
+## Are the materials safe?
+Absolutely! All materials meet safety standards and are thoroughly tested. Age-appropriate items are carefully selected for each stage.
