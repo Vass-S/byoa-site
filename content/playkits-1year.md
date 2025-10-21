@@ -1,6 +1,6 @@
 ## Support your toddler’s growing curiosity with open-ended play that builds confidence, coordination, and language.
 
-Delivered every 3 months | ₹9,900 per Play Kit
+Delivered every 3 months | Original price ₹9,500 → is now ₹5,700 for a limited time. 
 
 ### The Talker Play Kit (Months 13–15)
 

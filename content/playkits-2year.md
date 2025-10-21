@@ -1,6 +1,6 @@
 ## Encourage independence, creative thinking, and early STEM learning through play that celebrates hands-on discovery.
 
-Delivered every 3 months | ₹9,900 per Play Kit
+Delivered every 3 months | Original price ₹9,500 → is now ₹5,700 for a limited time.
 
 ### The Little Helper Kit (Months 25–27)
 

@@ -1,6 +1,6 @@
 ## Explore deeper ideas and self-expression as your child begins to understand their thoughts, feelings, and identity.
 
-Delivered every 3 months | ₹9,900 per Play Kit
+Delivered every 3 months | Original price ₹9,500 → is now ₹5,700 for a limited time.
 
 ### The Watcher Kit (Months 37–39)
 

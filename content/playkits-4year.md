@@ -1,6 +1,6 @@
 ## Prepare your preschooler for the next stage with play that builds flexibility, problem-solving, and planning — key skills for school and life.
 
-Delivered every 3 months | ₹9,900 per Play Kit
+Delivered every 3 months | Original price ₹9,500 → is now ₹5,700 for a limited time.
 
 ### The Connector Kit (Months 49–51)
 

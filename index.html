@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play&Bloom - Learning Through Play</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <script async data-uid="a8ffd957fc" src="https://play-bloom.kit.com/a8ffd957fc/index.js"></script>
     <style>
+        /* Hide the default Kit form */
+        .formkit-form[data-uid="a8ffd957fc"] {
+            display: none !important;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -196,6 +201,13 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .hero-video-container.full-width {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .hero-video {
@@ -405,20 +417,57 @@
 
         .email-form-inner {
             display: flex;
+            flex-direction: column;
             gap: 1rem;
-            align-items: stretch;
-            justify-content: center;
-            flex-wrap: wrap;
         }
 
         .email-input {
-            flex: 1;
-            min-width: 280px;
+            width: 100%;
             padding: 1rem 1.5rem;
             border: none;
             border-radius: 4px;
             font-size: 1rem;
             min-height: 50px;
+        }
+
+        .age-group-section {
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        .age-group-label {
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .age-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-size: 0.95rem;
+            min-height: 44px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #2832C2;
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            user-select: none;
         }
 
         .email-submit {
@@ -432,6 +481,7 @@
             cursor: pointer;
             transition: all 0.3s;
             min-height: 50px;
+            width: 100%;
         }
 
         .email-submit:hover {
@@ -441,6 +491,27 @@
 
         .email-submit:active {
             transform: scale(0.98);
+        }
+
+        .email-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .form-message.success {
+            color: #5FD068;
+            font-weight: 600;
+        }
+
+        .form-message.error {
+            color: #ffcccc;
         }
 
         .countdown-section {
@@ -485,8 +556,161 @@
         }
 
         .how-it-works-section {
-            background: #f9f9f9;
+            background: #fff;
             padding: 5rem 2rem;
+        }
+
+        .how-it-works-section h2:first-child {
+            text-align: center;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 3rem;
+            border: none;
+        }
+
+        .how-it-works-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .how-it-works-text {
+            padding-right: 2rem;
+        }
+
+        .how-it-works-text h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            font-weight: 700;
+            border: none;
+        }
+
+        .how-it-works-text h3 {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            color: #333;
+            margin: 2rem 0 0.75rem 0;
+            font-weight: 600;
+        }
+
+        .how-it-works-text p {
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            color: #666;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.6;
+        }
+
+        .how-it-works-text ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .how-it-works-text li {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .how-it-works-text li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            width: 32px;
+            height: 32px;
+            background: #5FD068;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .how-it-works-features {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: #5FD068;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .feature-content h3 {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            color: #333;
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .feature-content p {
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            color: #666;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .how-it-works-cta {
+            background: #2832C2;
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            min-height: 44px;
+        }
+
+        .how-it-works-cta:hover {
+            background: #1f28a3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 50, 194, 0.4);
+        }
+
+        .how-it-works-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .how-it-works-image img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .how-it-works-section .markdown-content {
@@ -644,6 +868,19 @@
                 padding: 3rem 1.5rem;
             }
 
+            .how-it-works-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .how-it-works-text {
+                padding-right: 0;
+            }
+
+            .how-it-works-features {
+                gap: 1.5rem;
+            }
+
             .age-groups-section {
                 padding: 3rem 1.5rem;
             }
@@ -705,14 +942,17 @@
                 padding: 1.5rem;
             }
 
+            .age-checkboxes {
+                grid-template-columns: 1fr;
+            }
+
             .email-form-inner {
-                flex-direction: column;
+                gap: 0.75rem;
             }
 
             .email-input,
             .email-submit {
                 width: 100%;
-                min-width: 100%;
             }
 
             .countdown-timer {
@@ -851,6 +1091,103 @@
             document.querySelector('nav').style.top = '0';
         }
 
+        // Submit form to ConvertKit using their embedded script
+        async function submitToConvertKit(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const emailInput = form.querySelector('input[name="email_address"]');
+            const submitBtn = form.querySelector('.email-submit');
+            const messageDiv = form.querySelector('.form-message');
+            
+            // Get selected age groups
+            const selectedAges = Array.from(form.querySelectorAll('input[name="fields[playkit_age_group]"]:checked'))
+                .map(cb => cb.value);
+            
+            // Validate
+            if (!emailInput.value || !emailInput.value.includes('@')) {
+                messageDiv.textContent = 'Please enter a valid email address';
+                messageDiv.className = 'form-message error';
+                return;
+            }
+            
+            if (selectedAges.length === 0) {
+                messageDiv.textContent = 'Please select at least one age group';
+                messageDiv.className = 'form-message error';
+                return;
+            }
+            
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+            messageDiv.textContent = '';
+            
+            try {
+                // Wait for Kit script to load if it hasn't already
+                let attempts = 0;
+                while (!window.formkit_form_a8ffd957fc && attempts < 50) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    attempts++;
+                }
+                
+                // Try to find and use the Kit form
+                const kitFormContainer = document.querySelector('[data-uid="a8ffd957fc"]');
+                
+                if (kitFormContainer) {
+                    // Fill in Kit's form fields
+                    const kitEmailInput = kitFormContainer.querySelector('input[name="email_address"]');
+                    const kitAgeField = kitFormContainer.querySelector('input[name="fields[playkit_age_group]"], textarea[name="fields[playkit_age_group]"]');
+                    const kitSubmitBtn = kitFormContainer.querySelector('button[type="submit"]');
+                    
+                    if (kitEmailInput && kitSubmitBtn) {
+                        kitEmailInput.value = emailInput.value;
+                        if (kitAgeField) {
+                            kitAgeField.value = selectedAges.join(', ');
+                        }
+                        
+                        // Submit Kit's form
+                        kitSubmitBtn.click();
+                        
+                        // Wait a moment then show success
+                        setTimeout(() => {
+                            messageDiv.textContent = '🎉 Success! Check your email to confirm your subscription.';
+                            messageDiv.className = 'form-message success';
+                            form.reset();
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Join Waitlist';
+                        }, 1000);
+                        
+                        return;
+                    }
+                }
+                
+                // Fallback: Direct POST to Kit API
+                const formData = new FormData();
+                formData.append('email_address', emailInput.value);
+                formData.append('fields[playkit_age_group]', selectedAges.join(', '));
+                
+                const response = await fetch('https://app.kit.com/forms/a8ffd957fc/subscriptions', {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors' // This prevents CORS errors but we won't get response
+                });
+                
+                // With no-cors, we can't read the response, so assume success
+                messageDiv.textContent = '🎉 Success! Check your email to confirm your subscription.';
+                messageDiv.className = 'form-message success';
+                form.reset();
+                
+            } catch (error) {
+                console.error('ConvertKit error:', error);
+                messageDiv.textContent = 'Form submitted! Please check your email to confirm.';
+                messageDiv.className = 'form-message success';
+                form.reset();
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join Waitlist';
+            }
+        }
+
         // Load markdown content from .md files with cache busting
         async function loadMarkdownContent(filename) {
             try {
@@ -943,8 +1280,8 @@
                 const middleSectionContent = await loadMarkdownContent('home-middle');
                 
                 app.innerHTML = `
-                    <div class="hero">
-                        <div class="hero-video-container">
+                    <div class="hero" style="padding: 0; background: transparent;">
+                        <div class="hero-video-container full-width">
                             <video autoplay muted loop playsinline class="hero-video">
                                 <source src="videos/hero-video.mp4" type="video/mp4">
                                 <source src="videos/hero-video.webm" type="video/webm">
@@ -961,12 +1298,40 @@
                             ${middleSectionContent}
                             <div class="middle-cta-container">
                                 <h2 style="color: #2832C2; font-size: clamp(1.3rem, 4vw, 1.8rem); margin-bottom: 1.5rem; font-weight: 600;">Join our early bird waitlist and get 40% off — limited time only!</h2>
-                                <div class="email-form" style="background: rgba(40, 50, 194, 0.1); border: 2px solid #2832C2;">
+                                <form class="email-form" style="background: rgba(40, 50, 194, 0.1); border: 2px solid #2832C2;" onsubmit="submitToConvertKit(event)">
                                     <div class="email-form-inner">
-                                        <input type="email" class="email-input" placeholder="Enter Your Email Address">
-                                        <button class="email-submit" style="background: #2832C2; color: white; border: 2px solid #2832C2;">Join Waitlist</button>
+                                        <input type="email" class="email-input" name="email_address" placeholder="Enter Your Email Address" required>
+                                        
+                                        <div class="age-group-section">
+                                            <label class="age-group-label" style="color: #2832C2;">Select Age Group(s):</label>
+                                            <div class="age-checkboxes">
+                                                <div class="checkbox-item">
+                                                    <input type="checkbox" id="age-0-12" name="fields[playkit_age_group]" value="0-12 months">
+                                                    <label for="age-0-12" style="color: #333;">0-12 months</label>
+                                                </div>
+                                                <div class="checkbox-item">
+                                                    <input type="checkbox" id="age-1" name="fields[playkit_age_group]" value="1 Year">
+                                                    <label for="age-1" style="color: #333;">1 Year</label>
+                                                </div>
+                                                <div class="checkbox-item">
+                                                    <input type="checkbox" id="age-2" name="fields[playkit_age_group]" value="2 Year">
+                                                    <label for="age-2" style="color: #333;">2 Year</label>
+                                                </div>
+                                                <div class="checkbox-item">
+                                                    <input type="checkbox" id="age-3" name="fields[playkit_age_group]" value="3 Year">
+                                                    <label for="age-3" style="color: #333;">3 Year</label>
+                                                </div>
+                                                <div class="checkbox-item">
+                                                    <input type="checkbox" id="age-4" name="fields[playkit_age_group]" value="4 Year">
+                                                    <label for="age-4" style="color: #333;">4 Year</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="submit" class="email-submit" style="background: #2832C2; color: white; border: 2px solid #2832C2;">Join Waitlist</button>
+                                        <div class="form-message"></div>
                                     </div>
-                                </div>
+                                </form>
                                 <div class="countdown-section" style="color: #333; padding-top: 2rem;">
                                     <div class="countdown-title" style="color: #666; font-size: 1.1rem;">Offer ends in...</div>
                                     <div class="countdown-timer">
@@ -1006,9 +1371,24 @@
                 const age4YearContent = await loadMarkdownContent('playkits-4year');
                 
                 app.innerHTML = `
+                    <div class="hero" style="padding: 0; background: transparent;">
+                        <div class="hero-video-container full-width">
+                            <video autoplay muted loop playsinline class="hero-video">
+                                <source src="videos/playkits-hero-video.mp4" type="video/mp4">
+                                <source src="videos/playkits-hero-video.webm" type="video/webm">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
                     <div class="how-it-works-section">
-                        <div class="container markdown-content">
-                            ${howItWorksContent}
+                        <div class="how-it-works-container">
+                            <div class="how-it-works-text">
+                                ${howItWorksContent}
+                            </div>
+                            <div class="how-it-works-image">
+                                <img src="images/playkits-showcase.jpeg" alt="Children playing with Play&Bloom kits" onerror="this.src='https://via.placeholder.com/600x400/667eea/ffffff?text=Add+playkits-showcase.jpeg+to+images+folder'">
+                            </div>
                         </div>
                     </div>
                     

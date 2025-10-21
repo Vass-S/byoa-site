@@ -1,6 +1,6 @@
 ## Welcome your baby to the world with play that sparks early neural connections and builds your bond through every milestone.
 
-Delivered every 2 months | ₹8,000 per Play Kit
+Delivered every 2 months | Original price ₹8,000 → is now ₹4,800 for a limited time. 
 
 ### The Newborn Discovery Kit (Weeks 0–12)
 
